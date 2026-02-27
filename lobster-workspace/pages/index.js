@@ -1,110 +1,127 @@
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-white text-gray-900 p-8">
+      <div className="max-w-4xl mx-auto">
         
         {/* Header */}
-        <header className="mb-8">
-          <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-                  🦞 龙虾工作台
-                </h1>
-                <p className="text-gray-400 mt-1">每日精选内容聚合 · 最后更新: 2026-02-26 12:00</p>
-              </div>
-              <a 
-                href="/pixel-office" 
-                className="px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 rounded-lg border border-pink-500/50 transition-all"
-              >
-                🎮 查看状态
-              </a>
-            </div>
-          </div>
+        <header className="mb-12 border-b pb-6">
+          <h1 className="text-3xl font-bold mb-2">🦞 龙虾工作台</h1>
+          <p className="text-gray-600">每日精选内容聚合 · 最后更新: 2026-02-27</p>
         </header>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          {[
-            { label: '今日文章', value: '15', icon: '📰', color: 'from-blue-400 to-cyan-400' },
-            { label: 'GitHub项目', value: '10', icon: '⭐', color: 'from-yellow-400 to-orange-400' },
-            { label: '大咖文章', value: '8', icon: '📚', color: 'from-green-400 to-emerald-400' },
-            { label: '运行任务', value: '4', icon: '⚡', color: 'from-pink-400 to-rose-400' },
-          ].map((stat, i) => (
-            <div key={i} className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-white/10">
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                {stat.value}
-              </div>
-              <div className="text-gray-400 text-sm">{stat.label}</div>
-            </div>
-          ))}
+        {/* Stats */}
+        <div className="grid grid-cols-4 gap-4 mb-12 text-center">
+          <div className="p-4 border rounded">
+            <div className="text-2xl font-bold">15</div>
+            <div className="text-sm text-gray-600">今日文章</div>
+          </div>
+          <div className="p-4 border rounded">
+            <div className="text-2xl font-bold">10</div>
+            <div className="text-sm text-gray-600">GitHub项目</div>
+          </div>
+          <div className="p-4 border rounded">
+            <div className="text-2xl font-bold">8</div>
+            <div className="text-sm text-gray-600">大咖文章</div>
+          </div>
+          <div className="p-4 border rounded">
+            <div className="text-2xl font-bold">4</div>
+            <div className="text-sm text-gray-600">运行任务</div>
+          </div>
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* AI Daily */}
+        <section className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold">📰 AI 博客日报</h2>
+            <span className="text-sm text-gray-500">07:00 更新</span>
+          </div>
           
-          {/* AI Daily */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">📰 AI 博客日报</h2>
-              <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded">07:00 更新</span>
-            </div>
-            <ul className="space-y-3">
-              {[
-                'Claude Code 推出远程控制功能',
-                'tldraw 将测试移至闭源仓库引发讨论',
-                '用"vibe coding"打造 macOS 演示应用',
-                'AI 图像生成新进展：实时编辑',
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm hover:bg-white/5 p-2 rounded transition-colors cursor-pointer">
-                  <span className="text-blue-400 mt-0.5">▸</span>
-                  <span className="text-gray-300">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <button className="mt-4 w-full py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg border border-blue-500/50 transition-all text-sm">
-              查看全部 →
-            </button>
-          </div>
+          <ul className="space-y-4">
+            <li>
+              <a href="https://simonwillison.net/2026/Feb/26/andrej-karpathy/" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="font-medium mb-1">Andrej Karpathy 最新观点：AI 发展的关键转折点</div>
+                <div className="text-sm text-gray-600">simonwillison.net · AI 领域顶级专家的技术思考</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://simonwillison.net/2026/Feb/26/google-api-keys/" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="font-medium mb-1">Google Gemini 突然收紧 API Key 安全策略</div>
+                <div className="text-sm text-gray-600">simonwillison.net · 开发者面临密钥重置危机</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://daringfireball.net" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="font-medium mb-1">NATO 正式批准 iPhone/iPad 处理机密信息</div>
+                <div className="text-sm text-gray-600">daringfireball.net · 苹果设备安全性获军方认证</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://daringfireball.net" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="font-medium mb-1">"被放逐的乔布斯"：NeXT 时期如何塑造了今天的苹果</div>
+                <div className="text-sm text-gray-600">daringfireball.net · 关于史蒂夫·乔布斯被放逐时期的故事</div>
+              </a>
+            </li>
+          </ul>
+          
+          <a href="/output/digest-20260227.md" className="inline-block mt-4 px-4 py-2 border rounded hover:bg-gray-50 transition-colors">
+            查看全部 →
+          </a>
+        </section>
 
-          {/* GitHub Projects */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">💻 GitHub 每日精选</h2>
-              <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-1 rounded">10:00 更新</span>
-            </div>
-            
-            <div className="space-y-3">
-              {[
-                { name: 'n8n', stars: '176k', desc: '自动化工作流平台', tag: '效率工具' },
-                { name: 'InvokeAI', stars: '26.8k', desc: 'AI 图像生成引擎', tag: 'AI绘图' },
-                { name: 'react-bits', stars: '36.2k', desc: '动画 React 组件', tag: '前端' },
-                { name: 'nanobrowser', stars: '12.3k', desc: 'AI 网页自动化', tag: '自动化' },
-              ].map((project, i) => (
-                <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer">
-                  <div>
-                    <div className="font-semibold text-purple-300">{project.name}</div>
-                    <div className="text-xs text-gray-400">{project.desc}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-yellow-400 text-sm">⭐ {project.stars}</div>
-                    <div className="text-xs bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded mt-1">{project.tag}</div>
-                  </div>
+        {/* GitHub Projects */}
+        <section className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold">💻 GitHub 每日精选</h2>
+            <span className="text-sm text-gray-500">10:00 更新</span>
+          </div>
+          
+          <ul className="space-y-4">
+            <li>
+              <a href="https://github.com/n8n-io/n8n" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-medium">n8n</span>
+                  <span className="text-sm text-gray-600">⭐ 176.5k</span>
                 </div>
-              ))}
-            </div>
-            
-            <button className="mt-4 w-full py-2 bg-purple-500/20 hover:bg-purple-500/30 rounded-lg border border-purple-500/50 transition-all text-sm">
-              查看全部 →
-            </button>
-          </div>
-
-        </div>
+                <div className="text-sm text-gray-600">自动化工作流平台，400+ 集成，可减少备课重复工作</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/grafana/grafana" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-medium">Grafana</span>
+                  <span className="text-sm text-gray-600">⭐ 72.4k</span>
+                </div>
+                <div className="text-sm text-gray-600">数据可视化平台，可用于课程演示效果增强</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/metabase/metabase" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-medium">Metabase</span>
+                  <span className="text-sm text-gray-600">⭐ 46.2k</span>
+                </div>
+                <div className="text-sm text-gray-600">开源 BI 工具，数据分析教学可用</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/invoke-ai/InvokeAI" target="_blank" className="block p-4 border rounded hover:bg-gray-50 transition-colors">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-medium">InvokeAI</span>
+                  <span className="text-sm text-gray-600">⭐ 26.8k</span>
+                </div>
+                <div className="text-sm text-gray-600">AI 绘图引擎，与即梦课程直接相关</div>
+              </a>
+            </li>
+          </ul>
+          
+          <a href="/github-daily/github-daily-20260227.md" className="inline-block mt-4 px-4 py-2 border rounded hover:bg-gray-50 transition-colors">
+            查看全部 →
+          </a>
+        </section>
 
         {/* Footer */}
-        <footer className="mt-12 text-center text-sm text-gray-500">
-          <p>🦞 龙虾工作台 · 每天 12:00 自动更新</p>
+        <footer className="mt-16 pt-6 border-t text-center text-sm text-gray-500">
+          <p>🦞 龙虾工作台 · 每日自动更新</p>
         </footer>
 
       </div>
