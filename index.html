@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>龙虾工作台 | 每日精选</title>
+  <meta name="description" content="AI日报、GitHub精选、大咖知识库 - 每日自动更新">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Material You 紫色主题 */
+      --primary: #6750a4;
+      --primary-container: #eaddff;
+      --on-primary: #ffffff;
+      --on-primary-container: #21005d;
+      --secondary: #625b71;
+      --secondary-container: #e8def8;
+      --surface: #fef7ff;
+      --surface-variant: #e7e0ec;
+      --background: #fffbfe;
+      --on-surface: #1c1b1f;
+      --on-surface-variant: #49454f;
+      --outline: #79747e;
+      --outline-variant: #cab6d0;
+      --shadow: rgba(0,0,0,0.1);
+      
+      /* 圆角 */
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 28px;
+      --radius-xl: 32px;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--background);
+      color: var(--on-surface);
+      line-height: 1.6;
+    }
+    
+    /* Header */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--outline-variant);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-container);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .nav-links a {
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-lg);
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--secondary-container);
+      color: var(--on-surface);
+    }
+    
+    /* Main */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-container) 0%, var(--secondary-container) 100%);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--on-primary-container);
+      margin-bottom: 0.75rem;
+    }
+    
+    .hero p {
+      color: var(--on-surface-variant);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .hero-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+    
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero h1 { font-size: 1.75rem; }
+      .hero { padding: 2rem 1.5rem; }
+    }
+    
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    
+    .stat-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+    
+    /* Content Sections */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+    
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      background: var(--primary-container);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--on-primary-container);
+    }
+    
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    
+    .section-badge {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      color: var(--on-surface-variant);
+    }
+    
+    .section-content {
+      padding: 1rem;
+    }
+    
+    /* Article List */
+    .article-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .article-item {
+      display: block;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    
+    .article-item:hover {
+      background: var(--surface-variant);
+      border-color: var(--outline-variant);
+    }
+    
+    .article-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .article-tag {
+      padding: 0.15rem 0.5rem;
+      background: var(--secondary-container);
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    
+    /* View All Button */
+    .view-all {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.875rem;
+      background: var(--primary);
+      color: var(--on-primary);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    
+    .view-all:hover {
+      background: var(--on-primary-container);
+      box-shadow: 0 4px 16px rgba(103, 80, 164, 0.3);
+    }
+    
+    /* GitHub Specific */
+    .github-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+    
+    .github-item:hover {
+      background: var(--surface-variant);
+    }
+    
+    .github-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--secondary-container);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .github-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .github-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .github-name {
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    
+    .github-stars {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.8rem;
+      color: var(--on-surface-variant);
+      flex-shrink: 0;
+    }
+    
+    .github-desc {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      line-height: 1.4;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--outline-variant);
+    }
+    
+    .footer p {
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="/" class="logo">
+        <div class="logo-icon">🦞</div>
+        <span>龙虾工作台</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="active">今日</a>
+        <a href="/archive.html">归档</a>
+        <a href="https://github.com/Raymond-Hear" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Hero -->
+    <section class="hero">
+      <h1>今日精选内容</h1>
+      <p>AI 日报、GitHub 项目推荐、大咖知识库 —— 每日自动更新</p>
+      <div class="hero-date">
+        <span>📅</span>
+        <span id="current-date">2026年3月5日</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">15</div>
+        <div class="stat-label">AI 文章</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">10</div>
+        <div class="stat-label">GitHub 项目</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">8</div>
+        <div class="stat-label">大咖文章</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">7</div>
+        <div class="stat-label">运行天数</div>
+      </div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+      <!-- AI 日报 -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon">📊</div>
+            <span>AI 日报</span>
+          </div>
+          <span class="section-badge">07:00 更新</span>
+        </div>
+        <div class="section-content">
+          <div class="article-list">
+            <a href="https://simonwillison.net/2026/Mar/05/llms-txt/" target="_blank" class="article-item">
+              <div class="article-title">LLMs.txt: 网站 AI 访问新标准</div>
+              <div class="article-meta">
+                <span class="article-tag">AI 标准</span>
+                <span>simonwillison.net</span>
+              </div>
+            </a>
+            <a href="https://simonwillison.net/2026/Mar/05/mistral-small-3/" target="_blank" class="article-item">
+              <div class="article-title">Mistral Small 3 树莓派 5 本地运行指南</div>
+              <div class="article-meta">
+                <span class="article-tag">开源模型</span>
+                <span>simonwillison.net</span>
+              </div>
+            </a>
+            <a href="https://daringfireball.net/" target="_blank" class="article-item">
+              <div class="article-title">Apple Intelligence 春季更新传闻</div>
+              <div class="article-meta">
+                <span class="article-tag">Apple</span>
+                <span>daringfireball.net</span>
+              </div>
+            </a>
+            <a href="https://idiallo.com/" target="_blank" class="article-item">
+              <div class="article-title">初级开发者正在消失（这是个问题）</div>
+              <div class="article-meta">
+                <span class="article-tag">行业观察</span>
+                <span>idiallo.com</span>
+              </div>
+            </a>
+          </div>
+          <a href="/archive.html#daily" class="view-all">
+            <span>查看全部日报</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- GitHub 精选 -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon">⭐</div>
+            <span>GitHub 精选</span>
+          </div>
+          <span class="section-badge">10:00 更新</span>
+        </div>
+        <div class="section-content">
+          <div class="article-list">
+            <a href="https://github.com/microsoft/OmniParser" target="_blank" class="github-item">
+              <div class="github-icon">🖥️</div>
+              <div class="github-info">
+                <div class="github-header">
+                  <span class="github-name">microsoft/OmniParser</span>
+                  <span class="github-stars">⭐ 15.2k</span>
+                </div>
+                <div class="github-desc">纯视觉 GUI 自动化工具，可解析屏幕内容并执行操作</div>
+              </div>
+            </a>
+            <a href="https://github.com/langchain-ai/open_deep_research" target="_blank" class="github-item">
+              <div class="github-icon">🔍</div>
+              <div class="github-info">
+                <div class="github-header">
+                  <span class="github-name">langchain-ai/open_deep_research</span>
+                  <span class="github-stars">⭐ 8.5k</span>
+                </div>
+                <div class="github-desc">开源深度研究助手，自动化信息收集与分析</div>
+              </div>
+            </a>
+            <a href="https://github.com/allenai/olmocr" target="_blank" class="github-item">
+              <div class="github-icon">📄</div>
+              <div class="github-info">
+                <div class="github-header">
+                  <span class="github-name">allenai/olmocr</span>
+                  <span class="github-stars">⭐ 5.3k</span>
+                </div>
+                <div class="github-desc">PDF 内容提取工具，保持格式和结构</div>
+              </div>
+            </a>
+            <a href="https://github.com/n8n-io/n8n" target="_blank" class="github-item">
+              <div class="github-icon">⚡</div>
+              <div class="github-info">
+                <div class="github-header">
+                  <span class="github-name">n8n-io/n8n</span>
+                  <span class="github-stars">⭐ 176.5k</span>
+                </div>
+                <div class="github-desc">自动化工作流平台，400+ 集成</div>
+              </div>
+            </a>
+          </div>
+          <a href="/archive.html#github" class="view-all">
+            <span>查看全部推荐</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">今日</a>
+      <a href="/archive.html">归档</a>
+      <a href="https://github.com/Raymond-Hear" target="_blank">GitHub</a>
+    </div>
+    <p>🦞 龙虾工作台 · 每日自动更新 · 为聆风服务</p>
+  </footer>
+
+  <script>
+    // 设置当前日期
+    const dateEl = document.getElementById('current-date');
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+    dateEl.textContent = now.toLocaleDateString('zh-CN', options);
+  </script>
+</body>
+</html>

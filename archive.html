@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内容归档 | 龙虾工作台</title>
+  <meta name="description" content="AI日报、GitHub精选历史归档">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6750a4;
+      --primary-container: #eaddff;
+      --on-primary: #ffffff;
+      --on-primary-container: #21005d;
+      --secondary: #625b71;
+      --secondary-container: #e8def8;
+      --surface: #fef7ff;
+      --surface-variant: #e7e0ec;
+      --background: #fffbfe;
+      --on-surface: #1c1b1f;
+      --on-surface-variant: #49454f;
+      --outline: #79747e;
+      --outline-variant: #cab6d0;
+      --shadow: rgba(0,0,0,0.1);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 28px;
+      --radius-xl: 32px;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--background);
+      color: var(--on-surface);
+      line-height: 1.6;
+    }
+    
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--outline-variant);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-container);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .nav-links a {
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-lg);
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--secondary-container);
+      color: var(--on-surface);
+    }
+    
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    
+    .page-header {
+      margin-bottom: 2rem;
+    }
+    
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-header p {
+      color: var(--on-surface-variant);
+    }
+    
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: 1rem;
+    }
+    
+    .tab {
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-lg);
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .tab:hover, .tab.active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    
+    /* Archive List */
+    .archive-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .archive-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+    
+    .archive-item:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px var(--shadow);
+      transform: translateY(-2px);
+    }
+    
+    .archive-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+      padding: 0.75rem;
+      background: var(--primary-container);
+      border-radius: var(--radius-md);
+    }
+    
+    .archive-day {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .archive-month {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+    }
+    
+    .archive-content {
+      flex: 1;
+    }
+    
+    .archive-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-bottom: 0.5rem;
+    }
+    
+    .archive-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .archive-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    
+    .archive-arrow {
+      font-size: 1.25rem;
+      color: var(--outline);
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--outline-variant);
+    }
+    
+    .footer p {
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="/" class="logo">
+        <div class="logo-icon">🦞</div>
+        <span>龙虾工作台</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">今日</a>
+        <a href="/archive.html" class="active">归档</a>
+        <a href="https://github.com/Raymond-Hear" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-header">
+      <h1>内容归档</h1>
+      <p>浏览历史日报和 GitHub 推荐</p>
+    </div>
+
+    <div class="tabs">
+      <a href="#daily" class="tab active" id="tab-daily">
+        <span>📊</span>
+        <span>AI 日报</span>
+      </a>
+      <a href="#github" class="tab" id="tab-github">
+        <span>⭐</span>
+        <span>GitHub 精选</span>
+      </a>
+    </div>
+
+    <!-- AI 日报列表 -->
+    <div id="daily-list" class="archive-list">
+      <a href="/daily/2026-03-05.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">05</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">AI Daily Digest - March 5, 2026</div>
+          <div class="archive-meta">
+            <span>📰 15 篇文章</span>
+            <span>🏷️ EU AI Act, GPT-5, 合成数据</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/daily/2026-03-04.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">04</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">AI Daily Digest - March 4, 2026</div>
+          <div class="archive-meta">
+            <span>📰 12 篇文章</span>
+            <span>🏷️ Claude, Gemini, Open Source</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/daily/2026-03-03.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">03</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">AI Daily Digest - March 3, 2026</div>
+          <div class="archive-meta">
+            <span>📰 14 篇文章</span>
+            <span>🏷️ AI Agents, Security, Tools</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/daily/2026-03-02.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">02</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">AI Daily Digest - March 2, 2026</div>
+          <div class="archive-meta">
+            <span>📰 16 篇文章</span>
+            <span>🏷️ LLMs, Productivity, Design</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/daily/2026-03-01.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">01</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">AI Daily Digest - March 1, 2026</div>
+          <div class="archive-meta">
+            <span>📰 13 篇文章</span>
+            <span>🏷️ Hardware, Vision, APIs</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- GitHub 推荐列表 -->
+    <div id="github-list" class="archive-list" style="display: none;">
+      <a href="/github/2026-03-05.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">05</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">GitHub Daily - March 5, 2026</div>
+          <div class="archive-meta">
+            <span>⭐ 10 个项目</span>
+            <span>🔧 AI工具, 自动化, 可视化</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/github/2026-03-04.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">04</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">GitHub Daily - March 4, 2026</div>
+          <div class="archive-meta">
+            <span>⭐ 10 个项目</span>
+            <span>🔧 开发工具, 学习资源</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/github/2026-03-03.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">03</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">GitHub Daily - March 3, 2026</div>
+          <div class="archive-meta">
+            <span>⭐ 10 个项目</span>
+            <span>🔧 AI应用, 效率工具</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/github/2026-03-02.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">02</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">GitHub Daily - March 2, 2026</div>
+          <div class="archive-meta">
+            <span>⭐ 10 个项目</span>
+            <span>🔧 课程制作, 内容创作</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+
+      <a href="/github/2026-03-01.html" class="archive-item">
+        <div class="archive-date">
+          <div class="archive-day">01</div>
+          <div class="archive-month">3月</div>
+        </div>
+        <div class="archive-content">
+          <div class="archive-title">GitHub Daily - March 1, 2026</div>
+          <div class="archive-meta">
+            <span>⭐ 10 个项目</span>
+            <span>🔧 可视化, 自动化</span>
+          </div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">今日</a>
+      <a href="/archive.html">归档</a>
+      <a href="https://github.com/Raymond-Hear" target="_blank">GitHub</a>
+    </div>
+    <p>🦞 龙虾工作台 · 每日自动更新 · 为聆风服务</p>
+  </footer>
+
+  <script>
+    // Tab switching
+    const tabDaily = document.getElementById('tab-daily');
+    const tabGithub = document.getElementById('tab-github');
+    const dailyList = document.getElementById('daily-list');
+    const githubList = document.getElementById('github-list');
+
+    tabDaily.addEventListener('click', (e) => {
+      e.preventDefault();
+      tabDaily.classList.add('active');
+      tabGithub.classList.remove('active');
+      dailyList.style.display = 'flex';
+      githubList.style.display = 'none';
+    });
+
+    tabGithub.addEventListener('click', (e) => {
+      e.preventDefault();
+      tabGithub.classList.add('active');
+      tabDaily.classList.remove('active');
+      githubList.style.display = 'flex';
+      dailyList.style.display = 'none';
+    });
+
+    // Handle hash in URL
+    if (window.location.hash === '#github') {
+      tabGithub.click();
+    }
+  </script>
+</body>
+</html>

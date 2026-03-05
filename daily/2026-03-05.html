@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Daily Digest - March 5, 2026 | 龙虾工作台</title>
+  <meta name="description" content="EU AI Act enforcement, Apple Intelligence Spring Update, GPT-5 speculation">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6750a4;
+      --primary-container: #eaddff;
+      --on-primary: #ffffff;
+      --on-primary-container: #21005d;
+      --secondary: #625b71;
+      --secondary-container: #e8def8;
+      --surface: #fef7ff;
+      --surface-variant: #e7e0ec;
+      --background: #fffbfe;
+      --on-surface: #1c1b1f;
+      --on-surface-variant: #49454f;
+      --outline: #79747e;
+      --outline-variant: #cab6d0;
+      --shadow: rgba(0,0,0,0.1);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 28px;
+      --radius-xl: 32px;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--background);
+      color: var(--on-surface);
+      line-height: 1.7;
+    }
+    
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--outline-variant);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-container);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .back-link:hover {
+      color: var(--primary);
+    }
+    
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    
+    .article-header {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .article-badge {
+      padding: 0.35rem 0.75rem;
+      background: var(--primary-container);
+      border-radius: var(--radius-lg);
+      color: var(--on-primary-container);
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    
+    .article-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      line-height: 1.3;
+    }
+    
+    .article-content h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-container);
+    }
+    
+    .article-content h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 1.75rem 0 0.75rem;
+    }
+    
+    .article-content p {
+      margin-bottom: 1rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .article-content ul, .article-content ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    
+    .article-content li {
+      margin-bottom: 0.5rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .article-content a:hover {
+      text-decoration: underline;
+    }
+    
+    .article-content blockquote {
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      background: var(--surface-variant);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+    }
+    
+    .article-content code {
+      padding: 0.2rem 0.4rem;
+      background: var(--surface-variant);
+      border-radius: var(--radius-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+    }
+    
+    .article-content pre {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--surface-variant);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+    }
+    
+    .article-content pre code {
+      background: none;
+      padding: 0;
+    }
+    
+    .source-card {
+      margin: 1.5rem 0;
+      padding: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-lg);
+    }
+    
+    .source-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .source-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary-container);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    
+    .source-name {
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    
+    .source-link {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .article-item {
+      margin-bottom: 1rem;
+    }
+    
+    .article-item-title {
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-bottom: 0.25rem;
+    }
+    
+    .article-item-desc {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+    
+    /* Navigation */
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--outline-variant);
+    }
+    
+    .nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      max-width: 45%;
+    }
+    
+    .nav-link:hover {
+      border-color: var(--primary);
+    }
+    
+    .nav-link.next {
+      text-align: right;
+      margin-left: auto;
+    }
+    
+    .nav-label {
+      font-size: 0.8rem;
+      color: var(--on-surface-variant);
+    }
+    
+    .nav-title {
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--outline-variant);
+    }
+    
+    .footer p {
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="/" class="logo">
+        <div class="logo-icon">🦞</div>
+        <span>龙虾工作台</span>
+      </a>
+      <a href="/archive.html#daily" class="back-link">
+        <span>←</span>
+        <span>返回归档</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+    <article>
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-badge">📰 AI 日报</span>
+          <span>2026年3月5日</span>
+          <span>15 篇文章</span>
+        </div>
+        <h1>AI Daily Digest - March 5, 2026</h1>
+      </header>
+
+      <div class="article-content">
+        <p><strong>今日概览</strong>：EU AI Act 对高风险系统的执法开始，Apple 传闻将在 Xcode 16 中集成设备端推理模型，开源替代 GPT-5 级别模型的方案获得关注，以及关于 LLM 在合成数据上训练时出现"崩溃"的新研究。</p>
+
+        <h2>📰 simonwillison.net</h2>
+        
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">LLMs.txt: A new standard for website AI access</div>
+            <div class="article-item-desc">Simon 探讨了新兴的 llms.txt 约定（类似于 robots.txt），允许网站指定 AI 爬虫可以使用哪些内容进行训练。包括用于从数据库模式自动生成 llms.txt 文件的 Datasette 插件。</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">Running Mistral Small 3 locally on a Raspberry Pi 5</div>
+            <div class="article-item-desc">详细指南：在消费级硬件上量化和提供 24B 参数模型。性能基准测试显示，文档分析任务的延迟是可接受的。</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">GPT-5 speculation and the commoditization of intelligence</div>
+            <div class="article-item-desc">对泄露的定价结构的分析表明，token 成本可能再下降 40%。Simon 认为我们正在接近 LLM 的"gzip 时刻"，压缩和推理将成为公用事业级别的服务。</div>
+          </div>
+        </div>
+
+        <h2>📰 daringfireball.net</h2>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">The Apple Intelligence Spring Update</div>
+            <div class="article-item-desc">John Gruber 详细介绍了传闻中的 3 月 17 日发布会：设备端 Siri 推理、Vision Pro 2 的增强视觉智能，以及有争议的每月 $9.99 的"AI 订阅层"。</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">On the rumored iPhone 17 'Air'</div>
+            <div class="article-item-desc">虽然不是 AI 专属，但有相关背景：超薄硬件限制如何推动 Apple 的神经引擎优化工作。"芯片就是产品本身。"</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">Meta's Llama 4 and the open question</div>
+            <div class="article-item-desc">Gruber 链接到许可争议，指出"开源"AI 越来越像 Android 的碎片化——技术上开放，实际上受控。</div>
+          </div>
+        </div>
+
+        <h2>📰 idiallo.com</h2>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">The Junior Developer is disappearing (and that's a problem)</div>
+            <div class="article-item-desc">Ibrahim 认为 AI 编码助手已经瓦解了"教程管道"——初级开发者不再在 Stack Overflow 上苦苦挣扎，错过了关键的调试直觉。长期人才管道令人担忧。</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">When the AI contractor fails silently</div>
+            <div class="article-item-desc">案例研究：一家初创公司用自主 AI 代理取代了 QA 团队。六个月的累积错误导致了数据库损坏事件。"沉默本身就是 bug。"</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">Prompt engineering is becoming systems engineering</div>
+            <div class="article-item-desc">Diallo 重新定义了就业市场："我们不再输入魔法词了。我们在设计反馈循环、护栏和故障模式。"</div>
+          </div>
+        </div>
+
+        <h2>📰 pluralistic.net</h2>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">The enshittification of AI</div>
+            <div class="article-item-desc">Cory Doctorow 讨论平台衰退如何适用于 LLM 服务：初始实用阶段（有用的聊天机器人），然后是榨取阶段（未经同意用你的对话训练），最后是对抗性优化（插入监控广告）。</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">Copyright's last stand: NYT v. OpenAI hits SCOTUS</div>
+            <div class="article-item-desc">最高法院听取关于 AI 训练是否构成合理使用的辩论。Doctorow 主张法定许可，而不是全有或全无的版权胜利。</div>
+          </div>
+        </div>
+
+        <div class="source-card">
+          <div class="article-item">
+            <div class="article-item-title">The EU AI Act's first casualties</div>
+            <div class="article-item-desc">分析对三家生物识别监控供应商的执法行动。"高风险"分类现在有了真正的 teeth：全球营业额 6% 的罚款和强制算法审计。</div>
+          </div>
+        </div>
+
+        <h2>🔍 跨源趋势</h2>
+
+        <p><strong>合成数据崩溃</strong>：剑桥大学的新论文（被 Simon 和 Cory 引用）证明，在 AI 生成的内容上训练超过 3 代会导致模型退化。对"合成数据淘金热"的影响。</p>
+
+        <p><strong>代理战争</strong>：所有四个来源都提到了自主代理——Apple 传闻中的"Siri 代理"、Meta 的"Agentic Llama"，以及 pluralistic 对 AI 法案中无人监督 AI 行动的监管关注。</p>
+
+      </div>
+
+      <nav class="article-nav">
+        <a href="/daily/2026-03-04.html" class="nav-link">
+          <span class="nav-label">← 上一篇</span>
+          <span class="nav-title">March 4, 2026</span>
+        </a>
+        <a href="/daily/2026-03-06.html" class="nav-link next">
+          <span class="nav-label">下一篇 →</span>
+          <span class="nav-title">March 6, 2026</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>🦞 龙虾工作台 · 每日自动更新 · 为聆风服务</p>
+  </footer>
+</body>
+</html>
